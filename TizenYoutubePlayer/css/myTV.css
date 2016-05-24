@@ -1,0 +1,40 @@
+.slick-prev:before, .slick-next:before { color: black; }
+
+/* .videoplayer{
+	
+}
+.innervideoplayer{
+	padding-top: 100px;
+	background-color: black;
+    border: 5px solid navy;
+    margin: auto;
+    width: 60%;
+    height: 40%;
+    padding: 25px;
+    align-content: center;
+} */
+
+.container{padding-top:5px;
+background-color: #0B150B;
+font-weight: bold;
+color:#B1ECFF;
+}
+.client-text li {left:0;right:0;margin:auto;list-style:none;margin:50px;z-index:9999;color:red;}
+
+.item{ height: 150px;
+background-color: #ffff;
+}
+
+.slick-slide{
+  width:120px;
+margin-right: 15px;
+margin-left: 15px;
+}
+
+/* 
+.triangle{left:0;right:0;margin:auto;width:0;
+height: 0;
+border-style: solid;
+border-width: 15px 15px 0 15px;
+border-color: #333333 transparent transparent transparent;
+} */

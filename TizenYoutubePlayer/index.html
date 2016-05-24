@@ -1,0 +1,308 @@
+<html>
+    
+    <head>
+
+        <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE"></meta>
+        <META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE"></meta>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+
+        <script src="$WEBAPIS/webapis/webapis.js"></script>
+
+        <script type="text/JavaScript" src="./js/videoPlayer.js"></script>
+        <script type="text/JavaScript" src="./js/videoTesting.js"></script>
+        <script type="text/JavaScript" src="./js/main.js"></script>
+        
+        <style>
+            .button {
+                padding: 20px;
+                background : #999999;
+                width: 200px;
+                height: 50px;
+                margin: 10px;
+            }
+
+            .videoFramePos{
+                left: 40px;
+                top: 10px;
+                position: float;
+                display: block; 
+margin: 0 auto;
+            }
+
+            .videoFrame {
+                
+                width: 100%;
+                height: 250px;
+                
+            }
+
+        </style>
+
+      <link rel="stylesheet" type="text/css" href="css/style.css" />
+      <link rel="stylesheet" type="text/css" href="slick/slick.css"/>
+      <link rel="stylesheet" type="text/css" href="slick/slick-theme.css"/>
+      <link rel="stylesheet" type="text/css" href="css/myTV.css"/>
+      <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>    
+
+    <script type="text/javascript">
+      function getJSONData(yourUrl) {
+        var Httpreq = new XMLHttpRequest();
+        try {
+        Httpreq.open("GET", yourUrl, false);
+        Httpreq.send(null);
+        } catch (ex) {
+        alert(ex.message);
+        }
+        return Httpreq.responseText;
+      }
+      function showVideoList(username, writediv, maxnumbervideos, apikey) {
+        try {
+          document.getElementById(writediv).innerHTML = "";
+          var keyinfo = JSON.parse(getJSONData("https://www.googleapis.com/youtube/v3/channels?part=snippet&forUsername=" + username + "&key=" + apikey));
+          var userid = keyinfo.items[0].id;
+          /* var channeltitle = keyinfo.items[0].snippet.title;
+          var channeldescription = keyinfo.items[0].snippet.description;
+          var channelthumbnail = keyinfo.items[0].snippet.thumbnails.default.url; // default, medium or high
+          */                //channel header
+          /*                document.getElementById(writediv).innerHTML += "<div style='width:100%;min-height:90px;'>"
+          + "<a href='https://www.youtube.com/user/" + username + "' target='_blank'>"
+          + "<img src='" + channelthumbnail + "' style='border:none;float:left;margin-right:10px;' alt='" + channeltitle + "' title='" + channeltitle + "' /></a>"
+          + "<div style='width:100%;text-align:center;'><h1><a href='https://www.youtube.com/user/" + username + "' target='_blank'>" + channeltitle + "</a></h1>" + channeldescription + "</div>"
+          + "</div>";*/
+          var videoinfo = JSON.parse(getJSONData("https://www.googleapis.com/youtube/v3/search?order=date&part=snippet&channelId=" + userid + "&maxResults=" + maxnumbervideos + "&key=" + apikey));
+          var videos = videoinfo.items;
+          var videocount = videoinfo.pageInfo.totalResults;
+          // video listing
+          for (var i = 0; i < videos.length; i++) {
+          var videoid = videos[i].id.videoId;
+          var videotitle = videos[i].snippet.title;
+          var videodescription = videos[i].snippet.description;
+          var videodate = videos[i].snippet.publishedAt; // date time published
+          var videothumbnail = videos[i].snippet.thumbnails.default.url; // default, medium or high
+
+          document.getElementById(writediv).innerHTML += "<div class='item "+ i +"' onclick=switchYouTube('"+videoid+"') >"
+          + "<img src='" + videothumbnail + "' alt='" + videotitle + "' title='" + videotitle + "' />"
+          + "<a><h6>"+videotitle+"</h6></a>"
+          + "</div>";
+        }
+        } catch (ex) {
+         alert(ex.message);
+        }
+      }
+    </script>
+
+
+
+
+    </head>
+    
+    <body>
+      <ul class="nav nav-tabs">
+        <li class="active"><a href="#home">Trending Videos</a></li>
+        <li><a href="#menu1">Search</a></li>
+      </ul>
+
+      <div class="tab-content">
+        <div id="home" class="tab-pane fade in active">
+          <!--  <div id='tizenVideoContainer' class='videoFrame videoFramePos'></div> -->
+          <div id='youTubeVideoContainer' class='videoFrame videoFramePos' ></div>
+
+          <br />
+          <div class="container " >
+            <h3><span class="yt-thumb-simple">  <img alt="" height="30" src="https://yt3.ggpht.com/-oeFSxn9TSiI/AAAAAAAAAAI/AAAAAAAAAAA/wUqBxH9RQZA/s88-c-k-no-rj-c0xffffff/photo.jpg" width="30">
+            </span>Tizen Indonesia</h3>
+            <div class="row ">
+              <div id="carousel1" class="carousel col-md-12 ">
+              </div>    
+            </div>
+          </div>
+          <hr />
+          <!-- @J -->
+          <div class="container ">
+            <h3><span class="yt-thumb-simple">  <img alt="" height="30" src="https://yt3.ggpht.com/-bonZt347bMc/AAAAAAAAAAI/AAAAAAAAAAA/lR8QEKnqqHk/s176-c-k-no-rj-c0xffffff/photo.jpg" width="30">
+            </span>TED Talks</h3>
+            
+            <div class="row ">
+              <div id="carousel2" class="carousel col-md-12 ">
+              </div>    
+            </div>
+          </div>
+          <hr />
+          <div class="container ">
+
+           <h3><span class="yt-thumb-simple">  <img alt="" height="30" src="https://yt3.ggpht.com/-FYVhSQqONp8/AAAAAAAAAAI/AAAAAAAAAAA/MhkO2Tsaj8E/s176-c-k-no-rj-c0xffffff/photo.jpg" width="30">
+            </span>Samsung Mobile</h3>
+            <div class="row ">
+              <div id="carousel3" class="carousel col-md-12 ">
+              </div>
+            </div>           
+          </div>  
+          <br />
+          <div class="container ">
+           <h3><span class="yt-thumb-simple">  <img alt="" height="30" src="https://yt3.ggpht.com/-YipuQBsTjTg/AAAAAAAAAAI/AAAAAAAAAAA/vT7XsVg56Y0/s100-c-k-no-rj-c0xffffff/photo.jpg" width="30">
+            </span>Sony Live</h3>
+            <div class="row ">
+              <div id="carousel4" class="carousel col-md-12 ">
+              </div>
+            </div> 
+          </div>  
+
+          <br />
+          <div class="container ">
+           <h3><span class="yt-thumb-simple">  <img alt="" height="30" src="https://yt3.ggpht.com/-QhQzWUzScJY/AAAAAAAAAAI/AAAAAAAAAAA/9Jf1nBWhuMM/s100-c-k-no-rj-c0xffffff/photo.jpg" width="30">
+            </span>Doordarshan National</h3>
+            <div class="row ">
+              <div id="carousel5" class="carousel col-md-12 ">
+              </div>
+            </div> 
+          </div> 
+
+                    <br />
+          <div class="container ">
+           <h3><span class="yt-thumb-simple">  <img alt="" height="30" src="https://yt3.ggpht.com/-0JMe8Km4M_M/AAAAAAAAAAI/AAAAAAAAAAA/AthkbcZAG1E/s100-c-k-no-rj-c0xffffff/photo.jpg" width="30">
+            </span>Zee TV</h3>
+            <div class="row ">
+              <div id="carousel6" class="carousel col-md-12 ">
+              </div>
+            </div> 
+          </div> 
+
+          <script type="text/javascript">
+            showVideoList("badaindonesia", "carousel1", 50, "AIzaSyC61pBxn-Mlfzn8VkJcpz4p9R_6xn6aCXE");
+            showVideoList("TEDtalksDirector", "carousel2", 50, "AIzaSyC61pBxn-Mlfzn8VkJcpz4p9R_6xn6aCXE");
+            showVideoList("SamsungMobile", "carousel3", 50, "AIzaSyC61pBxn-Mlfzn8VkJcpz4p9R_6xn6aCXE");
+            showVideoList("sonyliv", "carousel4", 50, "AIzaSyC61pBxn-Mlfzn8VkJcpz4p9R_6xn6aCXE");
+            showVideoList("DoordarshanNational", "carousel5", 50, "AIzaSyC61pBxn-Mlfzn8VkJcpz4p9R_6xn6aCXE");
+            showVideoList("zeetv", "carousel6", 50, "AIzaSyC61pBxn-Mlfzn8VkJcpz4p9R_6xn6aCXE");  
+            
+            
+          </script>  
+        </div>
+        
+
+        <div id="menu1" class="tab-pane fade">
+          <div class="container " >
+           <label> <input id="query" type="text"/><button id="search-button"  value="Mickey" onclick="searchVideoList()" style="color:rgb(32,95,70)">Search</button></label>
+           <div id="videos"></div>
+          </div>    
+        </div>
+      </div> 
+
+
+
+
+      <!-- But I want a 20px gap between slides. Hmm this doesn't work at all. -->
+      <!--     <div class="container">
+      -->
+
+      <script type="text/javascript" src="js/jquery-2.2.2.min.js"></script>
+      <script type="text/javascript" src="slick/slick.min.js"></script>
+      <script type="text/javascript" src="slick/slick.js"></script>
+
+      <script type="text/javascript" src="js/bootstrap.min.js"></script>
+      <script type="text/javascript" src="js/myTV.js"> </script>
+
+      <!-- @J -->
+      <script type="text/javascript">
+        $('#carousel1').slick({
+        arrows: true,
+        slidesToShow: 3,
+        autoplay: true,
+        autoplaySpeed:2500,
+        speed: 500,
+        variableWidth: true,
+        onAfterChange: function(){ 
+        var cat = ($('#carousel1').slickCurrentSlide()) + 1;
+        $('.client-text > li').hide();
+        $('.client-text > li:nth-child('+ cat +')').show();
+        }
+        });
+
+
+        $('#carousel2').slick({
+        arrows: true,
+        slidesToShow: 3,
+        autoplay: true,
+        autoplaySpeed:2500,
+        speed: 500,
+        variableWidth: true,
+        onAfterChange: function(){ 
+        var cat = ($('#carousel2').slickCurrentSlide()) + 1;
+        $('.client-text > li').hide();
+        $('.client-text > li:nth-child('+ cat +')').show();
+        }
+        });
+
+
+        $('#carousel3').slick({
+        arrows: true,
+        slidesToShow: 3,
+        autoplay: true,
+        autoplaySpeed:2500,
+        speed: 500,
+        variableWidth: true,
+        onAfterChange: function(){ 
+        var cat = ($('#carousel3').slickCurrentSlide()) + 1;
+        $('.client-text > li').hide();
+        $('.client-text > li:nth-child('+ cat +')').show();
+        }
+        });
+
+        $('#carousel4').slick({
+        arrows: true,
+        slidesToShow: 3,
+        autoplay: true,
+        autoplaySpeed:2500,
+        speed: 500,
+        variableWidth: true,
+        onAfterChange: function(){ 
+        var cat = ($('#carousel4').slickCurrentSlide()) + 1;
+        $('.client-text > li').hide();
+        $('.client-text > li:nth-child('+ cat +')').show();
+        }
+        });
+
+        $('#carousel5').slick({
+        arrows: true,
+        slidesToShow: 3,
+        autoplay: true,
+        autoplaySpeed:2500,
+        speed: 500,
+        variableWidth: true,
+        onAfterChange: function(){ 
+        var cat = ($('#carousel5').slickCurrentSlide()) + 1;
+        $('.client-text > li').hide();
+        $('.client-text > li:nth-child('+ cat +')').show();
+        }
+        });
+
+        $('#carousel6').slick({
+        arrows: true,
+        slidesToShow: 3,
+        autoplay: true,
+        autoplaySpeed:2500,
+        speed: 500,
+        variableWidth: true,
+        onAfterChange: function(){ 
+        var cat = ($('#carousel6').slickCurrentSlide()) + 1;
+        $('.client-text > li').hide();
+        $('.client-text > li:nth-child('+ cat +')').show();
+        }
+        });
+
+        $('.client-text > li').hide();
+        $('.client-text > li:first-child').show();
+      </script>
+      <script>
+        $(document).ready(function(){
+            $(".nav-tabs a").click(function(){
+                $(this).tab('show');
+            });
+        });
+      </script>
+
+</body>
+    
+</html>

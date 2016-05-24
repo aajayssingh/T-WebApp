@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widget xmlns:tizen="http://tizen.org/ns/widgets" xmlns="http://www.w3.org/ns/widgets" id="http://gangchi.tv/castChannel" version="0.2.1" viewmodes="maximized">
+    <access origin="http://www.gangchi.tv" subdomains="true"></access>
+    <access origin="http://www.google-analytics.com" subdomains="true"></access>
+    <access origin="http://tpc.googlesyndication.com" subdomains="true"></access>
+    <access origin="http://partner.googleadservices.com" subdomains="true"></access>
+    <access origin="http://pubads.g.doubleclick.net" subdomains="true"></access>
+    <access origin="http://www.googletagservices.com" subdomains="true"></access>
+    <access origin="http://tpc.googlesyndication.com/safeframe/1-0-2/html/container.html" subdomains="true"></access>
+    <access origin="http://googlevideo.com" subdomains="true"></access>
+    <access origin="https://googlevideo.com" subdomains="true"></access>
+    <access origin="https://www.youtube.com/embed/" subdomains="true"></access>
+    <access origin="https://www.youtube.com/" subdomains="true"></access>
+    <tizen:allow-navigation>*</tizen:allow-navigation>
+    <tizen:application id="lR5wno7wrP.YouTubeIFramePlayer" package="lR5wno7wrP" required_version="2.1"/>
+<!--     <tizen:category name="http://samsung.com/category/ticker"/> -->
+    <content src="index.html"/>
+    <tizen:content-security-policy>*</tizen:content-security-policy>
+    <description>YouTube iFrame Player</description>
+    <feature name="http://tizen.org/feature/screen.size.all"/>
+    <name>YouTubeIFramePlayer</name>
+    <tizen:privilege name="http://developer.samsung.com/privilege/avplay"/>
+    <tizen:privilege name="http://tizen.org/privilege/tv.inputdevice"/>
+    <tizen:privilege name="http://tizen.org/privilege/tv.audio"/>
+    <tizen:privilege name="http://tizen.org/privilege/tv.display"/>
+    <tizen:privilege name="http://developer.samsung.com/privilege/network.public"/>
+    <tizen:privilege name="http://developer.samsung.com/privilege/productinfo"/>
+    <tizen:privilege name="http://developer.samsung.com/privilege/network.partner"/>
+    <tizen:privilege name="http://developer.samsung.com/privilege/network"/>
+    <tizen:privilege name="http://tizen.org/privilege/network.connection"/>
+    <tizen:privilege name="http://tizen.org/privilege/tv.window"/>
+    <tizen:privilege name="http://tizen.org/privilege/tv.channel"/>
+    <tizen:privilege name="http://tizen.org/privilege/application.info"/>
+    <tizen:privilege name="http://tizen.org/privilege/application.launch"/>
+   <!--  <tizen:profile name="tv"/> -->
+    <tizen:setting screen-orientation="auto-rotation" background-support="disable" encryption="disable" hwkey-event="enable"/>
+</widget>
